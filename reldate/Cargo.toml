@@ -1,0 +1,13 @@
+[package]
+name = "reldate"
+version = "0.1.0"
+authors = ["Diwaker Ghimire <idwaker@gmail.com>"]
+
+[dependencies]
+
+chrono = "*"
+#rustc-searilize = "*"
+
+[dependencies.clap]
+
+git = "https://github.com/kbknapp/clap-rs.git"
