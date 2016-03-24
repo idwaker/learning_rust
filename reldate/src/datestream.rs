@@ -1,3 +1,7 @@
+//! Library for generating relative datestream
+//!
+//! This is some long documentation
+
 extern crate chrono;
 
 #[cfg(test)]
