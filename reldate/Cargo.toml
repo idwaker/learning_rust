@@ -3,6 +3,10 @@ name = "reldate"
 version = "0.1.0"
 authors = ["Diwaker Ghimire <idwaker@gmail.com>"]
 
+[lib]
+name = "datestream"
+src = "src/datestream.rs"
+
 [dependencies]
 
 chrono = "*"
