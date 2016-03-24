@@ -4,6 +4,30 @@
 
 extern crate chrono;
 
+use chrono::{Datelike, Duration, NaiveDate, Weekday};
+
+/// Allows iteration of arbitary range
+///
+/// This is some long description of below code.
+pub struct DateRangeIterator<F> {
+    d: NaiveDate,
+    f: F,
+}
+
+// what is where F: FnMut .... ?
+impl<F> Iterator for DateRangeIterator<F>
+    where F: FnMut(&NaiveDate) -> Option<NaiveDate>
+{
+    type Item = NaiveDate;
+
+    fn next(&mut self) -> Option<NaiveDate> {
+        let ret = (self.f)(&self.i);
+        if ret.is_some() { self.i = ret.unwrap(); }
+        ret
+    }
+}
+
+
 #[cfg(test)]
 mod test {
     use chrono::{Datelike, Duration, NaiveDate, Weekday};
