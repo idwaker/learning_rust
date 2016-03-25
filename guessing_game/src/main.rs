@@ -15,24 +15,31 @@ fn main() {
 
     println!("The secret number is {}", secret_number);
 
-    println!("Please input your guess:");
+    loop {
+        println!("Please input your guess:");
 
-    // let creates a variable binding
-    // we create a mutable variable binding
-    // :: associated function ( somewhat like static function )
-    let mut guess = String::new();
+        // let creates a variable binding
+        // we create a mutable variable binding
+        // :: associated function ( somewhat like static function )
+        let mut guess = String::new();
 
-    io::stdin().read_line(&mut guess)
-        .expect("Failed to read line");
+        io::stdin().read_line(&mut guess)
+            .expect("Failed to read line");
 
-    let guess: u32 = guess.trim().parse()
-                        .expect("Please enter a number");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
-    println!("You guessed {}", guess);
+        println!("You guessed {}", guess);
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small"),
-        Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("Wel-done!"),
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small"),
+            Ordering::Greater => println!("Too big"),
+            Ordering::Equal => {
+                println!("Weldone!");
+                break;
+            },
+        }
     }
 }
